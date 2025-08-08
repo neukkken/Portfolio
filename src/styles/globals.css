@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+* {
+    font-family: monospace;
+}
+
+input{
+    outline: none;
+}
+
+html{
+    background-color: #fbf7f3;
+}
+
+@theme {
+  --shadow-custom-page: 20px 20px rgba(0, 0, 0, 1); 
+  --shadow-custom-button: 3px 5px rgba(0, 0, 0, 1);
+}
+
+@config "../../tailwind.config.js"
