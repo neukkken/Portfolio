@@ -1,3 +1,4 @@
+import BackgroundMoon from '@/components/background-moon';
 import Navbar from '@/components/navbar';
 import React from 'react';
 
@@ -8,13 +9,10 @@ export default function DefaultLayout({
 }) {
 
   return (
-    <div className="max-w-[60%] mx-auto my-16 flex flex-row h-screen border-2 border-black shadow-custom-page rounded-xl bg-white">
-      <div className="h-full w-[5%] bg-black" />
-      <div className="flex flex-col w-full">
-        <Navbar/>
-        <div>
-          {children}
-        </div>
+    <div>
+      <BackgroundMoon />
+      <div className='flex flex-col items-center justify-start w-full h-screen overflow-auto'>
+        {children}
       </div>
     </div>
   );

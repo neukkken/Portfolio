@@ -11,7 +11,7 @@ export default function Navbar() {
                         <Calendar /> 02 Feb
                     </div>
                 </div>
-                <h1 className="font-bold text-4xl">Mi Portafolio</h1>
+                <h1 className="font-extrabold text-3xl">Mi Portafolio</h1>
             </div>
             <div className='flex flex-row items-center'>
                 <div className='flex items-center gap-2 mx-2'>
@@ -19,7 +19,7 @@ export default function Navbar() {
                     <input type="text" name="" id="" placeholder='Buscar...' className='border-2 shadow-custom-button rounded-xl h-5 px-5 py-5 font-bold text-xl' />
                 </div>
                 <div>
-                    <button onClick={() => setTranslate(!transtale)} className='flex gap-2 items-center justify-center border-2 shadow-custom-button rounded-xl h-5 px-5 py-5 font-bold text-xl hover:translate-x-[1px] hover:translate-y-[1px]'>
+                    <button onClick={() => setTranslate(!transtale)} className='cursor-pointer flex gap-2 items-center justify-center border-2 shadow-custom-button rounded-xl h-5 px-5 py-5 font-bold text-xl hover:translate-x-[1px] hover:translate-y-[1px]'>
                         <Languages size={20} />
                         {
                             transtale ? ("ES") : ("EN")

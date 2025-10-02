@@ -1,20 +1,68 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Acorn";
+  src: url("/font/Acorn-Thin.otf") format("opentype");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Acorn";
+  src: url("/font/Acorn-ExtraLight.otf") format("opentype");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Acorn";
+  src: url("/font/Acorn-Light.otf") format("opentype");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Acorn";
+  src: url("/font/Acorn-Regular.otf") format("opentype");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Acorn";
+  src: url("/font/Acorn-Medium.otf") format("opentype");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Acorn";
+  src: url("/font/Acorn-SemiBold.otf") format("opentype");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Acorn";
+  src: url("/font/Acorn-Bold.otf") format("opentype");
+  font-weight: 700;
+}
+
 * {
-    font-family: monospace;
-}
-
-input{
-    outline: none;
-}
-
-html{
-    background-color: #fbf7f3;
+    font-family: Acorn, sans-serif;
 }
 
 @theme {
-  --shadow-custom-page: 20px 20px rgba(0, 0, 0, 1); 
+  --shadow-custom-page: 20px 20px rgba(0, 0, 0, 1);
   --shadow-custom-button: 3px 5px rgba(0, 0, 0, 1);
 }
 
-@config "../../tailwind.config.js"
+@config "../../tailwind.config.js";
+
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #222 transparent;
+}
