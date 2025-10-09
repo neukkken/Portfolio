@@ -1,9 +1,9 @@
 import DefaultLayout from "@/layouts/default";
-import { DollarSign, LucideLinkedin, Mail, TerminalIcon, UserIcon } from "lucide-react";
-import { Button, Card, CardBody, CardFooter, CardHeader, Divider, Image, Tab, Tabs } from "@heroui/react";
-import { CssIcon, ExpressJsIcon, GithubIcon, LinkedInIcon, LinuxIcon, HTMLIcon, InsomniaIcon, JavaScriptIcon, JwtIcon, MongoAtlasIcon, NodeJsIcon, ReactIcon, TailwindIcon, TypeScriptIcon, VsCodeIcon } from "@/components/icons";
+import { DollarSign, LucideLinkedin, Mail, TerminalIcon } from "lucide-react";
+import { Button, Card, CardBody, CardHeader, Divider, Image, Tab, Tabs } from "@heroui/react";
+import { CssIcon, ExpressJsIcon, GithubIcon, LinuxIcon, HTMLIcon, InsomniaIcon, JavaScriptIcon, JwtIcon, MongoAtlasIcon, NodeJsIcon, ReactIcon, TailwindIcon, TypeScriptIcon, VsCodeIcon } from "@/components/icons";
 import { links } from "@/config/links";
-import { Link } from "react-router-dom";
+import { appVersion, actualState } from '../../global/global.ts'
 
 // ooriginalk bg sidebnar bg-[#000000a8]
 
@@ -23,15 +23,16 @@ import { Link } from "react-router-dom";
           </nav> */}
 
 export default function IndexPage() {
+
   return (
     <DefaultLayout>
       <div className="grid grid-cols-1 md:grid-cols-3 w-[90%] md:w-[70%] mx-auto p-10 gap-4">
         <div className="col-span-3 bg-[#0000009a] text-white flex p-4 rounded-xl gap-2 flex-col items-start justify-center">
           <div className="flex gap-2 items-center text-indigo-500">
-            <TerminalIcon size={13} /> <p className="text-[12px]">PORTFOLIO_TERMINAL v1.0.1</p>
+            <TerminalIcon size={13} /> <p className="text-[12px]">PORTFOLIO_TERMINAL {appVersion}</p>
           </div>
           <div className="flex gap-2 items-center text-green-600">
-            <DollarSign size={13} /> <p className="text-[12px]">Actualmente Durmiendo Zzz..</p>
+            <DollarSign size={13} /> <p className="text-[12px]">Actualmente {actualState}</p>
           </div>
         </div>
 
@@ -68,7 +69,7 @@ export default function IndexPage() {
         <div className="col-span-1 bg-[#0000009a] text-white flex p-4 rounded-xl gap-2 flex-col items-center justify-center">
           <p className="font-bold text-2xl">Tecnologias</p>
           <>
-            <Tabs fullWidth aria-label="Tecnologias" className="w-full h-full" variant="underlined" color="primary">
+            <Tabs fullWidth aria-label="Tecnologias" className="w-full h-full" variant="underlined" color="success">
               <Tab key="frontend" title="Frontend">
                 <div className="w-full h-full grid grid-cols-3 gap-4">
                   <div>
@@ -139,6 +140,30 @@ export default function IndexPage() {
               </Tab>
             </Tabs>
           </>
+        </div>
+
+        <div className="col-span-3 bg-[#0000009a] text-white flex p-4 rounded-xl gap-2 flex-col items-center justify-center">
+          <p className="font-bold text-2xl">Experencia Profesional</p>
+          <Card className="max-w-[100%] bg-[#1f1f24] text-white">
+            <CardHeader className="flex gap-3">
+              <Image
+                alt="heroui logo"
+                height={40}
+                radius="sm"
+                src="https://res.cloudinary.com/ds4spw3p8/image/upload/v1753733878/logo_efagram-06_ssmov5.png"
+                width={40}
+              />
+              <div className="flex flex-col">
+                <p className="text-md">Empresa forestal y agroambiental EFAGRAM S.A.S.</p>
+                <p className="text-small text-default-500">Octubre 2024 - Actualidad</p>
+              </div>
+            </CardHeader>
+            <Divider />
+            <CardBody>
+              <p>Desarrollador Full Stack con experiencia en React, Node.js, Express y MongoDB. Me gusta crear interfaces limpias y funcionales, construir APIs y trabajar con bases de datos. Durante mi tiempo en Efagram S.A.S. (2024–2025), ayudé a desarrollar apps web que mejoraron procesos internos. Siempre estoy aprendiendo y buscando formas de escribir mejor código.</p>
+            </CardBody>
+            <Divider />
+          </Card>
         </div>
 
         <div className="col-span-3 bg-[#0000009a] text-white flex p-4 rounded-xl gap-2 flex-col items-center justify-center">
