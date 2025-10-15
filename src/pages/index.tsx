@@ -1,32 +1,34 @@
 import DefaultLayout from "@/layouts/default";
 import { DollarSign, LucideLinkedin, Mail, TerminalIcon } from "lucide-react";
-import { Button, Card, CardBody, CardHeader, Divider, Image, Tab, Tabs } from "@heroui/react";
-import { CssIcon, ExpressJsIcon, GithubIcon, LinuxIcon, HTMLIcon, InsomniaIcon, JavaScriptIcon, JwtIcon, MongoAtlasIcon, NodeJsIcon, ReactIcon, TailwindIcon, TypeScriptIcon, VsCodeIcon } from "@/components/icons";
+import { Button, Card, CardBody, CardHeader, Divider, Image } from "@heroui/react";
+import { GithubIcon } from "@/components/icons";
 import { links } from "@/config/links";
 import { appVersion, actualState } from '../../global/global.ts'
-
-// ooriginalk bg sidebnar bg-[#000000a8]
-
-{/* <div className="w-32 mb-4">
-            <Image 
-              isBlurred
-              alt="profilePicture"
-              src='https://app.requestly.io/delay/1/https://i.pinimg.com/736x/7c/7d/2d/7c7d2df20b63040f1e7f626b8c503d8c.jpg'
-              width={128}
-              className="rounded-full"
-            />
-          </div>
-          <p className="font-bold text-2xl">Santiago Narvaez</p>
-          <p className="flex gap-1">Desarrollador <p className="italic underline">Front-end</p></p>
-          <nav className="w-full mt-5 text-center space-y-4">
-            
-          </nav> */}
+import React from "react";
+import { exp } from '../data/experiencia/exp.ts'
+import { proyectos } from '../data/proyectos/proyectos.ts'
+import SkillsCard from "@/components/skills.tsx";
 
 export default function IndexPage() {
 
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <DefaultLayout>
+        <h1 className="animate-fade-in-up animate-pulse m-auto text-white">Cargando...</h1>
+      </DefaultLayout>
+    );
+  }
+
   return (
     <DefaultLayout>
-      <div className="grid grid-cols-1 md:grid-cols-3 w-[90%] md:w-[70%] mx-auto p-10 gap-4">
+      <div className="animate-fade-in-up grid grid-cols-1 md:grid-cols-3 w-[90%] md:w-[70%] mx-auto p-10 gap-4">
         <div className="col-span-3 bg-[#0000009a] text-white flex p-4 rounded-xl gap-2 flex-col items-start justify-center">
           <div className="flex gap-2 items-center text-indigo-500">
             <TerminalIcon size={13} /> <p className="text-[12px]">PORTFOLIO_TERMINAL {appVersion}</p>
@@ -42,13 +44,13 @@ export default function IndexPage() {
             alt="profilePicture"
             src='https://app.requestly.io/delay/1/https://i.pinimg.com/736x/7c/7d/2d/7c7d2df20b63040f1e7f626b8c503d8c.jpg'
             width={128}
-            className="rounded-full"
+            className="rounded-full animate-fade-in"
           />
           <div className="w-[80%] h-full flex flex-col items-start justify-evenly">
             <div>
               <p className="font-bold text-2xl">Santiago Narvaez Lasso</p>
               <p className="flex text-indigo-500 text-sm mb-2">DESARROLLADOR_FRONT-END.tsx</p>
-              <p>Desarrollador Frontend, con experiencia en React, TypeScript, JavaScript (ES6+), HTML5, CSS3, TailwindCSS y
+              <p>Desarrollador Fullstack enfocado en Frontend, con experiencia en React, TypeScript, JavaScript (ES6+), HTML5, CSS3, TailwindCSS y
                 HeroUI. Desarrollo de interfaces responsivas y componentes reutilizables.</p>
             </div>
             <div className="gap-2 flex mt-4">
@@ -66,170 +68,73 @@ export default function IndexPage() {
           </div>
         </div>
 
-        <div className="col-span-1 bg-[#0000009a] text-white flex p-4 rounded-xl gap-2 flex-col items-center justify-center">
-          <p className="font-bold text-2xl">Tecnologias</p>
-          <>
-            <Tabs fullWidth aria-label="Tecnologias" className="w-full h-full" variant="underlined" color="success">
-              <Tab key="frontend" title="Frontend">
-                <div className="w-full h-full grid grid-cols-3 gap-4">
-                  <div>
-                    <HTMLIcon className="w-full h-12 hover:scale-105 transition-transform duration-200 cursor-pointer" />
-                    <p className="text-center text-sm">HTML</p>
-                  </div>
-                  <div>
-                    <CssIcon className="w-full h-12 hover:scale-105 transition-transform duration-200 cursor-pointer" />
-                    <p className="text-center text-sm">CSS</p>
-                  </div>
-                  <div>
-                    <JavaScriptIcon className="w-full h-12 hover:scale-105 transition-transform duration-200 cursor-pointer" />
-                    <p className="text-center text-sm">JavaScript</p>
-                  </div>
-                  <div>
-                    <ReactIcon className="w-full h-12 hover:scale-105 transition-transform duration-200 cursor-pointer" />
-                    <p className="text-center text-sm">React</p>
-                  </div>
-                  <div>
-                    <TypeScriptIcon className="w-full h-12 hover:scale-105 transition-transform duration-200 cursor-pointer" />
-                    <p className="text-center text-sm">TypeScript</p>
-                  </div>
-                  <div>
-                    <TailwindIcon className="w-full h-12 hover:scale-105 transition-transform duration-200 cursor-pointer" />
-                    <p className="text-center text-sm">TailwindCSS</p>
-                  </div>
-                </div>
-              </Tab>
-              <Tab key="backend" title="Backend">
-                <div className="w-full h-full grid grid-cols-3 gap-4">
-                  <div>
-                    <NodeJsIcon className="w-full h-12 hover:scale-105 transition-transform duration-200 cursor-pointer" />
-                    <p className="text-center text-sm">Node.js</p>
-                  </div>
-                  <div>
-                    <JwtIcon className="w-full h-12 hover:scale-105 transition-transform duration-200 cursor-pointer" />
-                    <p className="text-center text-sm">JWT</p>
-                  </div>
-                  <div>
-                    <ExpressJsIcon className="w-full h-12 hover:scale-105 transition-transform duration-200 cursor-pointer" />
-                    <p className="text-center text-sm">Express</p>
-                  </div>
-                  <div>
-                    <MongoAtlasIcon className="w-full h-12 hover:scale-105 transition-transform duration-200 cursor-pointer" />
-                    <p className="text-center text-sm">MongoDB</p>
-                  </div>
-                </div>
-              </Tab>
-              <Tab key="otras" title="Otras">
-                <div className="w-full h-full grid grid-cols-3 gap-4">
-                  <div>
-                    <InsomniaIcon className="w-full h-12 hover:scale-105 transition-transform duration-200 cursor-pointer" />
-                    <p className="text-center text-sm">Insomnia</p>
-                  </div>
-                  <div>
-                    <GithubIcon className="w-full h-12 hover:scale-105 transition-transform duration-200 cursor-pointer" />
-                    <p className="text-center text-sm">Github + Git</p>
-                  </div>
-                  <div>
-                    <VsCodeIcon className="w-full h-12 hover:scale-105 transition-transform duration-200 cursor-pointer" />
-                    <p className="text-center text-sm">VS Code</p>
-                  </div>
-                  <div>
-                    <LinuxIcon className="w-full h-12 hover:scale-105 transition-transform duration-200 cursor-pointer" />
-                    <p className="text-center text-sm">Linux</p>
-                  </div>
-                </div>
-              </Tab>
-            </Tabs>
-          </>
-        </div>
+        <SkillsCard />
 
         <div className="col-span-3 bg-[#0000009a] text-white flex p-4 rounded-xl gap-2 flex-col items-center justify-center">
           <p className="font-bold text-2xl">Experencia Profesional</p>
-          <Card className="max-w-[100%] bg-[#1f1f24] text-white">
+          {
+            exp.map((exp, index) => (
+              <Card key={index} className="max-w-[100%] bg-[#1f1f24] text-white">
+                <CardHeader className="flex gap-3">
+                  <Image
+                    alt="heroui logo"
+                    height={40}
+                    radius="sm"
+                    src={exp.icon}
+                    width={40}
+                  />
+                  <div className="flex flex-col">
+                    <p className="text-md">{exp.empresa}</p>
+                    <p className="text-small text-default-500">{exp.tiempo.inicio} - {exp.tiempo.final}</p>
+                  </div>
+                </CardHeader>
+                <Divider />
+                <CardBody>
+                  <p>{exp.descripcion}</p>
+                </CardBody>
+                <Divider />
+              </Card>
+            ))
+          }
+        </div>
+
+        <div className="col-span-3 bg-[#0000009a] text-white flex p-4 rounded-xl gap-2 flex-col items-center justify-center">
+          <p className="font-bold text-2xl">Proyectos</p>
+          <Card className=" bg-[#1f1f2486] text-white p-2">
             <CardHeader className="flex gap-3">
               <Image
                 alt="heroui logo"
                 height={40}
                 radius="sm"
-                src="https://res.cloudinary.com/ds4spw3p8/image/upload/v1753733878/logo_efagram-06_ssmov5.png"
+                src={proyectos[0].icon}
                 width={40}
               />
               <div className="flex flex-col">
-                <p className="text-md">Empresa forestal y agroambiental EFAGRAM S.A.S.</p>
-                <p className="text-small text-default-500">Octubre 2024 - Actualidad</p>
+                <p className="text-md">EfaApp</p>
+                <p className="text-small text-default-500">v2.0.2t</p>
+                <p className="text-small text-default-500">{proyectos[0].tecnologias}</p>
               </div>
-            </CardHeader>
-            <Divider />
-            <CardBody>
-              <p>Desarrollador Full Stack con experiencia en React, Node.js, Express y MongoDB. Me gusta crear interfaces limpias y funcionales, construir APIs y trabajar con bases de datos. Durante mi tiempo en Efagram S.A.S. (2024–2025), ayudé a desarrollar apps web que mejoraron procesos internos. Siempre estoy aprendiendo y buscando formas de escribir mejor código.</p>
-            </CardBody>
-            <Divider />
-          </Card>
-        </div>
 
-        <div className="col-span-3 bg-[#0000009a] text-white flex p-4 rounded-xl gap-2 flex-col items-center justify-center">
-          <p className="font-bold text-2xl">Proyectos</p>
-          <div className="w-full h-full grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Card className="max-w-[400px] bg-[#1f1f24] text-white">
-              <CardHeader className="flex gap-3">
-                <Image
-                  alt="heroui logo"
-                  height={40}
-                  radius="sm"
-                  src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
-                  width={40}
-                />
-                <div className="flex flex-col">
-                  <p className="text-md">Modulo Inventario</p>
-                  <p className="text-small text-default-500">---</p>
-                </div>
-              </CardHeader>
-              <Divider />
-              <CardBody>
-                <p>Módulo de Gestión de Productos, parte de la plataforma integral desarrollada para Efagram S.A.S. Permite administrar el inventario de EPP y dotaciones, con detalle por tallas, control de stock, valor total y alertas de disponibilidad. Implementado con React, TypeScript, TailwindCSS y HeroUI, priorizando accesibilidad, usabilidad y escalabilidad en la gestión de insumos.</p>
-              </CardBody>
-              <Divider />
-            </Card>
-            <Card className="max-w-[400px] bg-[#1f1f24] text-white">
-              <CardHeader className="flex gap-3">
-                <Image
-                  alt="heroui logo"
-                  height={40}
-                  radius="sm"
-                  src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
-                  width={40}
-                />
-                <div className="flex flex-col">
-                  <p className="text-md">Modulo Personal</p>
-                  <p className="text-small text-default-500">---</p>
-                </div>
-              </CardHeader>
-              <Divider />
-              <CardBody>
-                <p>Módulo de Gestión de Usuarios, dentro de la plataforma integral desarrollada para Efagram S.A.S. Destaca la implementación de un componente responsivo que se adapta a distintos tamaños de pantalla, facilitando la gestión de información en web y dispositivos móviles. Desarrollado con React, TypeScript, TailwindCSS y HeroUI, aplicando principios de accesibilidad, reutilización de componentes y diseño centrado en el usuario.</p>
-              </CardBody>
-              <Divider />
-            </Card>
-            <Card className="max-w-[400px] bg-[#1f1f24] text-white">
-              <CardHeader className="flex gap-3">
-                <Image
-                  alt="heroui logo"
-                  height={40}
-                  radius="sm"
-                  src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
-                  width={40}
-                />
-                <div className="flex flex-col">
-                  <p className="text-md">Aplicacion CTL</p>
-                  <p className="text-small text-default-500">---</p>
-                </div>
-              </CardHeader>
-              <Divider />
-              <CardBody>
-                <p>Módulo de Gestión de Productos, parte de la plataforma integral desarrollada para Efagram S.A.S. Permite administrar el inventario de EPP y dotaciones, con detalle por tallas, control de stock, valor total y alertas de disponibilidad. Implementado con React, TypeScript, TailwindCSS y HeroUI, priorizando accesibilidad, usabilidad y escalabilidad en la gestión de insumos.</p>
-              </CardBody>
-              <Divider />
-            </Card>
-          </div>
+            </CardHeader>
+            <div className="w-full h-full grid grid-cols-1 md:grid-cols-3 gap-4">
+              {
+                proyectos.map((proyecto) => (
+                  <Card className="max-w-[400px] bg-[#1f1f249f] text-white">
+                    <CardHeader className="flex gap-3">
+                      <div className="flex flex-col">
+                        <p className="text-xl">{proyecto.titulo}</p>
+                      </div>
+                    </CardHeader>
+                    <Divider />
+                    <CardBody>
+                      <p className="text-gray-300 text-sm">{proyecto.descripcion}</p>
+                    </CardBody>
+                    <Divider />
+                  </Card>
+                ))
+              }
+            </div>
+          </Card>
         </div>
       </div>
     </DefaultLayout>

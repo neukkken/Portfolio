@@ -1,5 +1,4 @@
 import BackgroundMoon from '@/components/background-moon';
-import Navbar from '@/components/navbar';
 import React from 'react';
 
 export default function DefaultLayout({
