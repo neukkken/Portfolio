@@ -6,7 +6,7 @@ import { links } from "@/config/links";
 import { appVersion, actualState } from '../../global/global.ts'
 import React from "react";
 import { exp } from '../data/experiencia/exp.ts'
-import { proyectos } from '../data/proyectos/proyectos.ts'
+import { proyectos } from '../data/proyectos/proyectos.tsx'
 import SkillsCard from "@/components/skills.tsx";
 
 export default function IndexPage() {
@@ -21,7 +21,7 @@ export default function IndexPage() {
   if (isLoading) {
     return (
       <DefaultLayout>
-        <h1 className="animate-fade-in-up animate-pulse m-auto text-white">Cargando...</h1>
+        <h1 className="animate-pulse m-auto text-white">Cargando...</h1>
       </DefaultLayout>
     );
   }
@@ -50,7 +50,7 @@ export default function IndexPage() {
             <div>
               <p className="font-bold text-2xl">Santiago Narvaez Lasso</p>
               <p className="flex text-indigo-500 text-sm mb-2">DESARROLLADOR_FRONT-END.tsx</p>
-              <p>Desarrollador Fullstack enfocado en Frontend, con experiencia en React, TypeScript, JavaScript (ES6+), HTML5, CSS3, TailwindCSS y
+              <p>Desarrollador Fullstack enfocado en Frontend, con experiencia en React, TypeScript, JavaScript (ES6+), ExpressJS, HTML5, CSS3, TailwindCSS y
                 HeroUI. Desarrollo de interfaces responsivas y componentes reutilizables.</p>
             </div>
             <div className="gap-2 flex mt-4">
@@ -63,7 +63,6 @@ export default function IndexPage() {
               <a href={`mailto:${links.email}`} target="_blank">
                 <Button className="flex items-center justify-center font-bold" size="sm" variant="ghost" color="success"><Mail size={16} /> Contactarme</Button>
               </a>
-              {/* cambiar por una funcion que mande el correo directamente */}
             </div>
           </div>
         </div>
@@ -120,16 +119,14 @@ export default function IndexPage() {
               {
                 proyectos.map((proyecto) => (
                   <Card className="max-w-[400px] bg-[#1f1f249f] text-white">
-                    <CardHeader className="flex gap-3">
-                      <div className="flex flex-col">
+                    <CardHeader className="flex gap-2">
+                      <div className="flex flex-col border-b-1 w-full">
                         <p className="text-xl">{proyecto.titulo}</p>
                       </div>
                     </CardHeader>
-                    <Divider />
                     <CardBody>
-                      <p className="text-gray-300 text-sm">{proyecto.descripcion}</p>
+                      <p className="text-gray-300 text-md">{proyecto.descripcion}</p>
                     </CardBody>
-                    <Divider />
                   </Card>
                 ))
               }

@@ -1,4 +1,3 @@
-
 export function getState () {
     let now = new Date()
     let currentHour = now.getHours();

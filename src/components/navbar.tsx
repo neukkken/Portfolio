@@ -1,4 +1,4 @@
-import { Calendar, Calendar1Icon, Languages, SearchIcon } from "lucide-react";
+import { Calendar, Languages, SearchIcon } from "lucide-react";
 import React from "react";
 
 export default function Navbar() {
