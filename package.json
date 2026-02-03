@@ -28,7 +28,7 @@
     "@tailwindcss/postcss": "4.1.11",
     "@tailwindcss/vite": "4.1.11",
     "clsx": "2.1.1",
-    "framer-motion": "11.18.2",
+    "framer-motion": "^11.18.2",
     "lucide-react": "^0.537.0",
     "piling.js": "^0.10.0",
     "react": "18.3.1",
