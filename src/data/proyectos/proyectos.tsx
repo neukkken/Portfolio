@@ -18,12 +18,24 @@ export const proyectos: IProyectos[] = [
     ),
     icon: "https://res.cloudinary.com/ds4spw3p8/image/upload/v1753733878/logo_efagram-06_ssmov5.png",
     tecnologias: "React TS, NodeJS, Express, MongoDB, Hero UI",
+    funciones: [
+      "Control de tallas y stock",
+      "Alertas de disponibilidad",
+      "App móvil para pedidos",
+      "Factura digital automática",
+    ],
   },
   {
     titulo: "Modulo Personal",
     descripcion: `Módulo de Gestión de Empleados e Incapacidades. Parte de la plataforma integral para Efagram S.A.S. Su diseño limpio e intuitivo y su componente responsivo facilitan la gestión de información en web y dispositivos móviles. Desarrollado con React, TypeScript, Tailwind CSS y Hero UI, priorizando la accesibilidad, reutilización de componentes y el diseño centrado en el usuario.`,
     icon: "https://res.cloudinary.com/ds4spw3p8/image/upload/v1753733878/logo_efagram-06_ssmov5.png",
     tecnologias: "React TS, Express, MongoDB",
+    funciones: [
+      "Gestión de empleados",
+      "Registro de incapacidades",
+      "Visualización responsive",
+      "Flujos de consulta rápidos",
+    ],
   },
   {
     titulo: "Aplicacion CTL",
@@ -31,5 +43,11 @@ export const proyectos: IProyectos[] = [
       "Aplicación de Gestión de Maquinaria, Operadores y Formularios. Esta plataforma integral está diseñada para optimizar y centralizar el seguimiento de las operaciones. Permite la gestión completa de la flota de maquinaria (incluyendo máquinas CTL) y la administración detallada de los operadores. La aplicación genera reportes mensuales automatizados sobre la producción y el rendimiento de las máquinas CTL, facilitando el análisis de datos para la toma de decisiones.",
     icon: "https://res.cloudinary.com/ds4spw3p8/image/upload/v1753733878/logo_efagram-06_ssmov5.png",
     tecnologias: "React TS, Express, MongoDB",
+    funciones: [
+      "Gestión de maquinaria CTL",
+      "Control de operadores",
+      "Formularios operativos",
+      "Reportes mensuales automatizados",
+    ],
   },
 ];

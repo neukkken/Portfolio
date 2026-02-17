@@ -1,5 +1,5 @@
 import DefaultLayout from "@/layouts/default";
-import { DollarSign, LucideLinkedin, Mail, TerminalIcon } from "lucide-react";
+import { Check, DollarSign, LucideLinkedin, Mail, TerminalIcon } from "lucide-react";
 import { Button, Card, CardBody, CardHeader, Divider, Image, Spinner, Progress } from "@heroui/react";
 import { GithubIcon } from "@/components/icons";
 import { links } from "@/config/links";
@@ -22,6 +22,43 @@ export default function IndexPage() {
     { text: 'proyectos', color: 'text-blue-500' },
     { text: 'habilidades', color: 'text-cyan-500' },
     { text: 'código', color: 'text-green-500' }
+  ];
+
+  const revealUp = {
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0 }
+  };
+
+  const revealSoft = {
+    hidden: { opacity: 0, scale: 0.98 },
+    visible: { opacity: 1, scale: 1 }
+  };
+
+  const projectAccents = [
+    {
+      cardBorder: "border-cyan-800/50 hover:border-cyan-500/80",
+      iconWrap: "bg-cyan-950/30 border-cyan-700/60",
+      subtitle: "text-cyan-300/85",
+      checkWrap: "bg-cyan-950/45 border-cyan-700/70 text-cyan-300",
+      chip: "border-cyan-800/60 bg-cyan-950/20 hover:border-cyan-500/80 hover:text-cyan-200",
+      cta: "text-cyan-400 hover:text-cyan-300"
+    },
+    {
+      cardBorder: "border-emerald-800/50 hover:border-emerald-500/80",
+      iconWrap: "bg-emerald-950/30 border-emerald-700/60",
+      subtitle: "text-emerald-300/85",
+      checkWrap: "bg-emerald-950/45 border-emerald-700/70 text-emerald-300",
+      chip: "border-emerald-800/60 bg-emerald-950/20 hover:border-emerald-500/80 hover:text-emerald-200",
+      cta: "text-emerald-400 hover:text-emerald-300"
+    },
+    {
+      cardBorder: "border-indigo-800/50 hover:border-indigo-500/80",
+      iconWrap: "bg-indigo-950/30 border-indigo-700/60",
+      subtitle: "text-indigo-300/85",
+      checkWrap: "bg-indigo-950/45 border-indigo-700/70 text-indigo-300",
+      chip: "border-indigo-800/60 bg-indigo-950/20 hover:border-indigo-500/80 hover:text-indigo-200",
+      cta: "text-indigo-400 hover:text-indigo-300"
+    }
   ];
 
   // Recolectar todas las URLs de imágenes
@@ -116,16 +153,30 @@ export default function IndexPage() {
         transition={{ duration: 1, ease: "easeOut" }}
         className="grid grid-cols-1 md:grid-cols-3 w-full sm:w-[95%] md:w-[90%] lg:w-[70%] mx-auto p-4 sm:p-6 md:p-10 gap-3 sm:gap-4"
       >
-        <div className="col-span-1 md:col-span-3 bg-[#0000009a] text-white flex p-4 rounded-xl gap-2 flex-col items-start justify-center">
+        <motion.div
+          variants={revealUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="col-span-1 md:col-span-3 bg-[#0000009a] text-white flex p-4 rounded-xl gap-2 flex-col items-start justify-center"
+        >
           <div className="flex gap-2 items-center text-indigo-500">
             <TerminalIcon size={13} /> <p className="text-[12px]">PORTFOLIO_TERMINAL {appVersion}</p>
           </div>
           <div className="flex gap-2 items-center text-green-600">
             <DollarSign size={13} /> <p className="text-[12px]">Actualmente {actualState}</p>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="col-span-1 md:col-span-2 bg-[#000000c0] text-white flex p-4 rounded-xl gap-4 md:gap-5 flex-col sm:flex-row items-center justify-center">
+        <motion.div
+          variants={revealUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+          className="col-span-1 md:col-span-2 bg-[#000000c0] text-white flex p-4 rounded-xl gap-4 md:gap-5 flex-col sm:flex-row items-center justify-center"
+        >
           <Image
             isBlurred
             alt="profilePicture"
@@ -151,40 +202,72 @@ export default function IndexPage() {
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <SkillsCard />
+        <motion.div
+          variants={revealSoft}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
+        >
+          <SkillsCard />
+        </motion.div>
 
-        <div className="col-span-1 md:col-span-3 bg-[#0000009a] text-white flex p-4 rounded-xl gap-2 flex-col items-center justify-center">
+        <motion.div
+          variants={revealUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="col-span-1 md:col-span-3 bg-[#0000009a] text-white flex p-4 rounded-xl gap-2 flex-col items-center justify-center"
+        >
           <p className="font-bold text-xl md:text-2xl">Experencia Profesional</p>
           {
             exp.map((exp, index) => (
-              <Card key={index} className="w-full bg-[#1f1f24] text-white">
-                <CardHeader className="flex gap-2 sm:gap-3 flex-col xs:flex-row">
-                  <Image
-                    alt="heroui logo"
-                    height={40}
-                    radius="sm"
-                    src={exp.icon}
-                    width={40}
-                    className="flex-shrink-0"
-                  />
-                  <div className="flex flex-col text-center xs:text-left">
-                    <p className="text-base sm:text-lg">{exp.empresa}</p>
-                    <p className="text-sm sm:text-base text-default-500">{exp.tiempo.inicio} - {exp.tiempo.final}</p>
-                  </div>
-                </CardHeader>
-                <Divider />
-                <CardBody>
-                  <p className="text-sm sm:text-base md:text-lg">{exp.descripcion}</p>
-                </CardBody>
-                <Divider />
-              </Card>
+              <motion.div
+                key={index}
+                variants={revealUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.08 }}
+                className="w-full"
+              >
+                <Card className="w-full bg-[#1f1f24] text-white">
+                  <CardHeader className="flex gap-2 sm:gap-3 flex-col xs:flex-row">
+                    <Image
+                      alt="heroui logo"
+                      height={40}
+                      radius="sm"
+                      src={exp.icon}
+                      width={40}
+                      className="flex-shrink-0"
+                    />
+                    <div className="flex flex-col text-center xs:text-left">
+                      <p className="text-base sm:text-lg">{exp.empresa}</p>
+                      <p className="text-sm sm:text-base text-default-500">{exp.tiempo.inicio} - {exp.tiempo.final}</p>
+                    </div>
+                  </CardHeader>
+                  <Divider />
+                  <CardBody>
+                    <p className="text-sm sm:text-base md:text-lg">{exp.descripcion}</p>
+                  </CardBody>
+                  <Divider />
+                </Card>
+              </motion.div>
             ))
           }
-        </div>
+        </motion.div>
 
-        <div className="col-span-1 md:col-span-3 bg-[#0000009a] text-white flex p-4 rounded-xl gap-2 flex-col items-center justify-center">
+        <motion.div
+          variants={revealUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="col-span-1 md:col-span-3 bg-[#0000009a] text-white flex p-4 rounded-xl gap-2 flex-col items-center justify-center"
+        >
           <p className="font-bold text-xl md:text-2xl">Proyectos</p>
           <Card className="bg-[#1f1f2486] text-white p-2 w-full flex">
             <CardHeader className="flex gap-3">
@@ -202,24 +285,58 @@ export default function IndexPage() {
               </div>
 
             </CardHeader>
-            <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+            <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3 md:gap-4">
               {
                 proyectos.map((proyecto, index) => (
-                  <Card key={index} className="w-full bg-[#1f1f249f] text-white">
-                    <CardHeader className="flex gap-2">
-                      <div className="flex flex-col border-b-1 w-full">
-                        <p className="text-xl sm:text-2xl break-words">{proyecto.titulo}</p>
-                      </div>
-                    </CardHeader>
-                    <CardBody>
-                      <p className="text-gray-300 text-sm sm:text-base md:text-lg">{proyecto.descripcion}</p>
-                    </CardBody>
-                  </Card>
+                  <motion.div
+                    key={index}
+                    variants={revealSoft}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.45, ease: "easeOut", delay: index * 0.06 }}
+                    className="w-full group"
+                  >
+                    <Card className={`w-full h-full bg-[#05070c58] text-white border rounded-2xl shadow-none p-2 sm:p-3 transform-gpu transition-all duration-500 ease-out hover:-translate-y-[2px] hover:shadow-[0_10px_28px_rgba(16,24,40,0.28)] ${projectAccents[index % projectAccents.length].cardBorder}`}>
+                      <CardHeader className="flex items-start gap-3 pb-2">
+                        <div className={`h-12 w-12 rounded-xl border flex items-center justify-center overflow-hidden transition-transform duration-500 ease-out group-hover:scale-105 ${projectAccents[index % projectAccents.length].iconWrap}`}>
+                          <Image
+                            alt={proyecto.titulo}
+                            src={proyecto.icon}
+                            width={26}
+                            height={26}
+                            radius="none"
+                          />
+                        </div>
+                        <div className="flex flex-col">
+                          <p className="text-base sm:text-lg font-semibold break-words leading-tight">{proyecto.titulo}</p>
+                          <p className={`text-xs sm:text-sm transition-colors duration-500 ease-out ${projectAccents[index % projectAccents.length].subtitle}`}>Gestión de Productos</p>
+                        </div>
+                      </CardHeader>
+                      <CardBody className="pt-2 gap-4">
+                        <div className="text-gray-300 text-xs sm:text-sm leading-relaxed">
+                          {proyecto.descripcion}
+                        </div>
+                        {proyecto.funciones && proyecto.funciones.length > 0 && (
+                          <div className="flex flex-col gap-2">
+                            {proyecto.funciones.map((funcion, functionIndex) => (
+                              <div key={`${proyecto.titulo}-funcion-${functionIndex}`} className="flex items-center gap-2">
+                                <span className={`h-5 w-5 min-w-5 rounded-full border flex items-center justify-center transition-all duration-500 ease-out group-hover:scale-105 ${projectAccents[index % projectAccents.length].checkWrap}`}>
+                                  <Check size={12} strokeWidth={3} />
+                                </span>
+                                <p className="text-gray-300 text-xs sm:text-sm">{funcion}</p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </CardBody>
+                    </Card>
+                  </motion.div>
                 ))
               }
             </div>
           </Card>
-        </div>
+        </motion.div>
       </motion.div>
     </DefaultLayout>
   );

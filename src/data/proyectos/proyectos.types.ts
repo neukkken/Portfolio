@@ -3,4 +3,5 @@ interface IProyectos {
     titulo: string,
     tecnologias: string,
     descripcion: any,
+    funciones?: string[],
 }
