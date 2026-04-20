@@ -1,9 +1,8 @@
 import DefaultLayout from "@/layouts/default";
-import { Check, ChevronLeft, ChevronRight, DollarSign, LucideLinkedin, Mail, TerminalIcon } from "lucide-react";
-import { Button, Card, CardBody, CardHeader, Divider, Image, Spinner, Progress, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Chip } from "@heroui/react";
+import { Check, ChevronLeft, ChevronRight, DollarSign, LucideLinkedin, TerminalIcon } from "lucide-react";
+import { Button, Card, CardBody, CardHeader, Divider, Image, Spinner, Progress, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@heroui/react";
 import { GithubIcon } from "@/components/icons";
 import { links } from "@/config/links";
-import { appVersion, actualState } from '../../global/global.ts'
 import React from "react";
 import { exp } from '../data/experiencia/exp.ts'
 import { proyectos } from '../data/proyectos/proyectos.tsx'
