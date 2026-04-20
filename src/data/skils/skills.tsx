@@ -1,4 +1,4 @@
-import { CssIcon, ExpressJsIcon, GithubIcon, HTMLIcon, InsomniaIcon, JavaScriptIcon, JwtIcon, LinuxIcon, MongoAtlasIcon, NodeJsIcon, ReactIcon, TailwindIcon, TypeScriptIcon, VsCodeIcon } from "@/components/icons";
+import { CssIcon, ExpressJsIcon, GithubCopilotIcon, GithubIcon, HTMLIcon, InsomniaIcon, JavaScriptIcon, JwtIcon, LinuxIcon, MongoAtlasIcon, NodeJsIcon, ReactIcon, TailwindIcon, TypeScriptIcon, VsCodeIcon } from "@/components/icons";
 
 const iconStyles = "w-full h-12 hover:scale-105 transition-transform duration-200";
 
@@ -65,4 +65,8 @@ export const ExtraSKills: ISkills[] = [
         icon: <LinuxIcon className={iconStyles}/>,
         name: "Linux"
     },
+    {
+        icon: <GithubCopilotIcon className={iconStyles}/>,
+        name: "G. Copilot"
+    }
 ]

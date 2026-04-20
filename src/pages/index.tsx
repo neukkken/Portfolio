@@ -1,6 +1,6 @@
 import DefaultLayout from "@/layouts/default";
-import { Check, DollarSign, LucideLinkedin, Mail, TerminalIcon } from "lucide-react";
-import { Button, Card, CardBody, CardHeader, Divider, Image, Spinner, Progress } from "@heroui/react";
+import { Check, ChevronLeft, ChevronRight, DollarSign, LucideLinkedin, Mail, TerminalIcon } from "lucide-react";
+import { Button, Card, CardBody, CardHeader, Divider, Image, Spinner, Progress, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Chip } from "@heroui/react";
 import { GithubIcon } from "@/components/icons";
 import { links } from "@/config/links";
 import { appVersion, actualState } from '../../global/global.ts'
@@ -12,9 +12,20 @@ import { motion } from "framer-motion";
 
 export default function IndexPage() {
 
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [isLoading, setIsLoading] = React.useState(true);
   const [imagesLoaded, setImagesLoaded] = React.useState(0);
   const [wordIndex, setWordIndex] = React.useState(0);
+  const [currentSlide, setCurrentSlide] = React.useState(0);
+
+  const galleryImages = [
+    "/img/login_efastack_screenshot.png",
+    "/img/personal_efastack_screenshot.png",
+    "/img/detalle_empleado_efastack_screenshot.png",
+    "/img/ordenes_c_efastack_screenshot.png",
+    "/img/orden_ejemplo_efastack_screenshot.png",
+    "/img/contrato_empleado_efastack_screenshot.png",
+  ];
 
   const loadingWords = [
     { text: 'portafolio', color: 'text-indigo-500' },
@@ -105,6 +116,26 @@ export default function IndexPage() {
     }
   }, [isLoading, loadingWords.length]);
 
+  React.useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [isOpen, galleryImages.length]);
+
+  const goToPrevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+  };
+
+  const goToNextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
+  };
+
   if (isLoading) {
     const progress = (imagesLoaded / allImages.length) * 100;
     return (
@@ -162,10 +193,10 @@ export default function IndexPage() {
           className="col-span-1 md:col-span-3 bg-[#0000009a] text-white flex p-4 rounded-xl gap-2 flex-col items-start justify-center"
         >
           <div className="flex gap-2 items-center text-indigo-500">
-            <TerminalIcon size={13} /> <p className="text-[12px]">PORTFOLIO_TERMINAL {appVersion}</p>
+            <TerminalIcon size={13} /> <p className="text-[12px]">Foresync &copy; {new Date().getFullYear()}</p>
           </div>
           <div className="flex gap-2 items-center text-green-600">
-            <DollarSign size={13} /> <p className="text-[12px]">Actualmente {actualState}</p>
+            <DollarSign size={13} /> <p className="text-[12px]">santyagonarvaezns@gmail.com</p>
           </div>
         </motion.div>
 
@@ -188,8 +219,9 @@ export default function IndexPage() {
               <p className="font-bold text-xl sm:text-2xl md:text-3xl break-words">Santiago Narvaez Lasso</p>
               <p className="flex text-indigo-500 text-sm sm:text-base mb-2 justify-center sm:justify-start">DESARROLLADOR_FRONT-END.tsx</p>
               <p className="text-sm sm:text-base md:text-lg leading-relaxed">Desarrollador Fullstack enfocado en Frontend, con experiencia en React, TypeScript, JavaScript (ES6+), ExpressJS, HTML5, CSS3, TailwindCSS y
-                HeroUI. Desarrollo de interfaces responsivas y componentes reutilizables.</p>
+                HeroUI.</p>
             </div>
+            
             <div className="gap-2 flex flex-wrap justify-center sm:justify-start">
               <a href={links.github} target="_blank">
                 <Button className="flex items-center justify-center font-bold" size="sm" variant="ghost" color="secondary"><GithubIcon size={16} /> Github</Button>
@@ -197,9 +229,9 @@ export default function IndexPage() {
               <a href={links.linkedin} target="_blank">
                 <Button className="flex items-center justify-center font-bold" size="sm" variant="ghost" color="primary"><LucideLinkedin size={16} /> LinkedIn</Button>
               </a>
-              <a href={`mailto:${links.email}`} target="_blank">
+              {/* <a href={`mailto:${links.email}`} target="_blank">
                 <Button className="flex items-center justify-center font-bold" size="sm" variant="ghost" color="success"><Mail size={16} /> Contactarme</Button>
-              </a>
+              </a> */}
             </div>
           </div>
         </motion.div>
@@ -285,7 +317,7 @@ export default function IndexPage() {
               </div>
 
             </CardHeader>
-            <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3 md:gap-4">
+            <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
               {
                 proyectos.map((proyecto, index) => (
                   <motion.div
@@ -335,6 +367,107 @@ export default function IndexPage() {
                 ))
               }
             </div>
+            <div className="w-full flex justify-center mt-2">
+              <Button
+                onPress={onOpen}
+                color="success"
+                variant="ghost"
+                className="font-semibold px-8"
+              >
+                Ver Galería
+              </Button>
+            </div>
+
+            <Modal
+              isOpen={isOpen}
+              onOpenChange={onOpenChange}
+              size="4xl"
+              scrollBehavior="outside"
+              backdrop="blur"
+              classNames={{
+                base: "bg-[#0d0d14] border border-white/10 text-white",
+                header: "border-b border-white/10",
+                footer: "border-t border-white/10",
+              }}
+            >
+              <ModalContent>
+                {(onClose) => (
+                  <>
+                    <ModalHeader className="flex flex-col gap-1">
+                      <p className="text-xl font-bold">Galeria EfaStack</p>
+                      <p className="text-sm text-default-400 font-normal">Capturas generales con algunos datos censurados. Esta galería muestra solo la parte de gestion de empleados y contratacion.</p>
+                      <p className="text-xs text-default-500 font-normal">{currentSlide + 1} / {galleryImages.length}</p>
+                    </ModalHeader>
+                    <ModalBody className="py-4">
+                      <div className="relative w-full rounded-2xl overflow-hidden border border-white/10 bg-black/40">
+                        <Image
+                          alt={`captura-${currentSlide + 1}`}
+                          src={galleryImages[currentSlide]}
+                          className="w-full h-[220px] sm:h-[340px] md:h-[460px] object-contain"
+                        />
+
+                        <Button
+                          isIconOnly
+                          variant="flat"
+                          color="default"
+                          onPress={goToPrevSlide}
+                          className="absolute top-1/2 -translate-y-1/2 left-3 bg-black/50 text-white"
+                          aria-label="Imagen anterior"
+                        >
+                          <ChevronLeft size={18} />
+                        </Button>
+
+                        <Button
+                          isIconOnly
+                          variant="flat"
+                          color="default"
+                          onPress={goToNextSlide}
+                          className="absolute top-1/2 -translate-y-1/2 right-3 bg-black/50 text-white"
+                          aria-label="Imagen siguiente"
+                        >
+                          <ChevronRight size={18} />
+                        </Button>
+                      </div>
+
+                      <div className="flex justify-center gap-2 mt-4">
+                        {galleryImages.map((_, index) => (
+                          <button
+                            key={`dot-${index}`}
+                            type="button"
+                            aria-label={`Ir a imagen ${index + 1}`}
+                            onClick={() => setCurrentSlide(index)}
+                            className={`h-2.5 rounded-full transition-all duration-300 ${currentSlide === index ? "w-7 bg-emerald-400" : "w-2.5 bg-white/40 hover:bg-white/70"}`}
+                          />
+                        ))}
+                      </div>
+
+                      <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 mt-3">
+                        {galleryImages.map((image, index) => (
+                          <button
+                            key={`thumb-${index}`}
+                            type="button"
+                            onClick={() => setCurrentSlide(index)}
+                            className={`rounded-xl overflow-hidden border transition-all duration-300 ${currentSlide === index ? "border-emerald-400 ring-1 ring-emerald-500/60" : "border-white/15 hover:border-white/40"}`}
+                            aria-label={`Seleccionar miniatura ${index + 1}`}
+                          >
+                            <Image
+                              alt={`miniatura-${index + 1}`}
+                              src={image}
+                              className="w-full h-14 object-cover"
+                            />
+                          </button>
+                        ))}
+                      </div>
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button color="danger" variant="light" onPress={onClose}>
+                        Cerrar
+                      </Button>
+                    </ModalFooter>
+                  </>
+                )}
+              </ModalContent>
+            </Modal>
           </Card>
         </motion.div>
       </motion.div>

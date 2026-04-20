@@ -27,13 +27,13 @@ export const proyectos: IProyectos[] = [
   },
   {
     titulo: "Modulo Personal",
-    descripcion: `Módulo de Gestión de Empleados e Incapacidades. Parte de la plataforma integral para Efagram S.A.S. Su diseño limpio e intuitivo y su componente responsivo facilitan la gestión de información en web y dispositivos móviles. Desarrollado con React, TypeScript, Tailwind CSS y Hero UI, priorizando la accesibilidad, reutilización de componentes y el diseño centrado en el usuario.`,
+    descripcion: `Gestión de Empleados y Contratación - Efagram S.A.S. Solución robusta para el ciclo de vida del empleado: incluye gestión de incapacidades y un flujo completo de contratación con emisión automática de órdenes y contratos. Construido bajo estándares de reutilización con Tailwind CSS y TypeScript, garantizando una experiencia de usuario ágil, limpia y 100% responsiva.`,
     icon: "https://res.cloudinary.com/ds4spw3p8/image/upload/v1753733878/logo_efagram-06_ssmov5.png",
     tecnologias: "React TS, Express, MongoDB",
     funciones: [
       "Gestión de empleados",
       "Registro de incapacidades",
-      "Visualización responsive",
+      "Emisión de órdenes y contratos",
       "Flujos de consulta rápidos",
     ],
   },

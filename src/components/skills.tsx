@@ -4,7 +4,7 @@ import { BackEndSkills, ExtraSKills, FrontEndSkills } from '@/data/skils/skills'
 export default function SkillsCard() {
     return (
         <div className="col-span-1 bg-[#0000009a] text-white flex p-4 rounded-xl gap-2 flex-col items-center justify-center">
-            <p className="font-bold text-2xl">Habilidades</p>
+            <p className="font-bold text-2xl">Herramientas</p>
             <Tabs fullWidth aria-label="Tecnologias" className="w-full h-full" variant="underlined" color="success">
                 <Tab key="frontend" title="Frontend">
                     <div className="w-full h-full grid grid-cols-3 gap-4">
